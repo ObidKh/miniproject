@@ -1,19 +1,18 @@
-name: Workflow Dispatch
- 
+name: Dispatch Workflow
 on:
- 
   workflow_dispatch:
-   inputs:
-     username:
-       description: 'Your username'
-       required: true
-     favorite_color:
-       description: 'Your favorite color'
-       required: true
+    inputs:
+      username:
+        description: 'Enter your username'
+        required: true
+        default: 'JohnDoe'
+      favorite_color:
+        description: 'Enter your favorite color'
+        required: true
+        default: 'blue'
 jobs:
-greet-user:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Greet User
-       run: |
-        echo "${{ inputs.username }} says hello, and favorite color is ${{ inputs.favorite_color }}"
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Username and Favorite Color
+        run: echo "${{ github.event.inputs.username }} says hello, and favorite color is ${{ github.event.inputs.favorite_color }}"
